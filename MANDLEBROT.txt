@@ -1,3 +1,6 @@
+REM This is a program from the RC2014 documentation that runs the mandelbrot set and displays it with ASCII text
+
+
 10 MAXITER=20
 20 LET C$=" .,'~!^:;[/<&?oxOX#  "
 30 FOR Y=-39 TO 39
