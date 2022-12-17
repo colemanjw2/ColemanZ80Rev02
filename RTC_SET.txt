@@ -1,4 +1,4 @@
-
+REM This program sets the real time clock with the card jumpers set to address (ADR 112-127)
 
 50 INPUT "Tens of Hours Digit (12hrCLK)(PM(x1x1)/AM(x0x1)";G
 60 INPUT "Hours";H
