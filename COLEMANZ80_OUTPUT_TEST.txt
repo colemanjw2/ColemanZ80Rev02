@@ -1,0 +1,138 @@
+REM This program puts "COLEMANZ80 COMPUTER" on the 16x2 
+REM LCD screen (ADR 00 and 01) and cycles 
+REM through the front panel output lights (OUT ADR 03)
+REM It also accepts input from the switches 
+REM at (INP ADR 03) that change the speed of the lights
+
+
+5 OUT 1, 0
+10 OUT 1,1: OUT 0,63
+11 OUT 1, 0
+20 OUT 1, 1: OUT 0, 15
+21 OUT 1, 0
+30 OUT 1, 1: OUT 0, 1
+31 OUT 1, 0
+40 OUT 1, 1: OUT 0,6
+41 OUT 1, 0
+
+
+100 OUT 1, 5: OUT 0 , 32
+105 OUT 1, 0
+
+110 OUT 1, 5: OUT 0 , 32
+115 OUT 1, 0
+
+120 OUT 1, 5: OUT 0 , 32
+125 OUT 1, 0
+
+130 OUT 1, 5: OUT 0 , 67
+135 OUT 1, 0
+
+140 OUT 1, 5: OUT 0 , 79
+145 OUT 1, 0
+
+150 OUT 1, 5: OUT 0 , 76
+155 OUT 1, 0
+
+160 OUT 1, 5: OUT 0 , 69
+165 OUT 1, 0
+
+170 OUT 1, 5: OUT 0 , 77
+175 OUT 1, 0
+
+180 OUT 1, 5: OUT 0 , 65
+185 OUT 1, 0
+
+190 OUT 1, 5: OUT 0 , 78
+195 OUT 1, 0
+
+200 OUT 1, 5: OUT 0 , 90
+205 OUT 1, 0
+
+210 OUT 1, 5: OUT 0 , 56
+215 OUT 1, 0
+
+220 OUT 1, 5: OUT 0 , 48
+225 OUT 1, 0
+
+230 OUT 1, 5: OUT 0 , 32
+235 OUT 1, 0
+
+240 OUT 1, 5: OUT 0 , 32
+245 OUT 1, 0
+
+250 OUT 1, 5: OUT 0 , 32
+255 OUT 1, 0
+
+
+299 REM move to second line
+
+300 OUT 1, 1: OUT 0 , 192
+305 OUT 1, 0
+
+
+
+400 OUT 1, 5: OUT 0 , 32
+405 OUT 1, 0
+
+410 OUT 1, 5: OUT 0 , 32
+415 OUT 1, 0
+
+420 OUT 1, 5: OUT 0 , 32
+425 OUT 1, 0
+
+430 OUT 1, 5: OUT 0 , 32
+435 OUT 1, 0
+
+440 OUT 1, 5: OUT 0 , 67
+445 OUT 1, 0
+
+450 OUT 1, 5: OUT 0 , 79
+455 OUT 1, 0
+
+460 OUT 1, 5: OUT 0 , 77
+465 OUT 1, 0
+
+470 OUT 1, 5: OUT 0 , 80
+475 OUT 1, 0
+
+480 OUT 1, 5: OUT 0 , 85
+485 OUT 1, 0
+
+490 OUT 1, 5: OUT 0 , 84
+495 OUT 1, 0
+
+500 OUT 1, 5: OUT 0 , 69
+505 OUT 1, 0
+
+510 OUT 1, 5: OUT 0 , 82
+515 OUT 1, 0
+
+
+519 REM CURSOR OFF/BLINK OFF
+520 OUT 1, 1: OUT 0 , 12
+525 OUT 1, 0
+
+
+
+
+610 LET DELAY = 50
+620 PRINT "Push buttons 0..7 to change speed"
+630 FOR F = 1 TO 6
+640 OUT 3, INT(2^F+0.1) : REM APU +0.1 Fudge
+650 GOSUB 720
+660 NEXT F
+670 FOR F = 7 TO 0 STEP -1
+680 OUT 3, INT(2^F+0.1) : REM APU +0.1 Fudge
+690 GOSUB 720
+700 NEXT F
+710 GOTO 630
+720 FOR Z = 1 TO DELAY
+730 IF INP(3) <> 0 THEN LET DELAY = INT(SQR(INP(3))) * 50
+740 NEXT Z
+750 RETURN
+
+
+
+
+
