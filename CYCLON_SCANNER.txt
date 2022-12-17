@@ -1,3 +1,6 @@
+REM This an RC2014 program from their documentation which tests a serial output card. 
+REM https://rc2014.co.uk/modules/digital-io/
+
 10 LET DELAY = 50
 20 PRINT "Push buttons 0..7 to change speed"
 30 FOR F = 1 TO 6
