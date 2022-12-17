@@ -1,3 +1,6 @@
+REM This program cycles the digits and decimal points of the seven segment peripheral for testing purposes
+
+
 10 FOR B=1TO10
 20 OUT 56,B
 30 OUT 57,B
